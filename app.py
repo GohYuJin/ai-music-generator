@@ -24,7 +24,7 @@ def result_palm():
     res = model.generate( [ prompt_text ], progress=True)
     for idx, one_wav in enumerate(res):
         audio_write('static/audio_file', one_wav.cpu(), model.sample_rate)
-    return(render_template("result_melody.html",r='static/audio_file.wav"))
+    return(render_template("result_melody.html",r="static/audio_file.wav"))
 
 @app.route("/end",methods=["GET","POST"])
 def end():
