@@ -18,7 +18,7 @@ def index():
     return(render_template("index.html"))
 
 @app.route("/result_melody",methods=["GET","POST"])
-def result_palm():
+def result_melody():
     prompt_text = request.form.get("q") 
     model.set_generation_params(duration=5)
     res = model.generate( [ prompt_text ], progress=True)
