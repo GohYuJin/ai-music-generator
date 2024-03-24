@@ -17,7 +17,7 @@ app = Flask(__name__)
 def index():
     return(render_template("index.html"))
 
-@app.route("/result_palm",methods=["GET","POST"])
+@app.route("/result_melody",methods=["GET","POST"])
 def result_palm():
     prompt_text = request.form.get("q") 
     # model.set_generation_params(duration=1)
