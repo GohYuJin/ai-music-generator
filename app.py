@@ -5,11 +5,7 @@
 # %%
 from flask import Flask,render_template,request
 
-from audiocraft.models import musicgen
-# from audiocraft.data.audio import audio_write
 import os
-
-model = musicgen.MusicGen.get_pretrained("small", device='cpu')
 
 app = Flask(__name__)
 
