@@ -17,11 +17,13 @@ def index():
 def result_melody():
     prompt_text = request.form.get("q") 
     from gradio_client import Client
+    import shutil
 
     client = Client("https://facebook-musicgen.hf.space/")
     result = client.predict(prompt_text, None, fn_index=0)
     print(result)
-    return(render_template("result_melody.html",r=result[0]))
+    shutil.copy(result[1], "static/audio.wav")
+    return(render_template("result_melody.html",r="static/audio.wav"))
 
 @app.route("/end",methods=["GET","POST"])
 def end():
