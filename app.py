@@ -8,7 +8,6 @@ from flask import Flask,render_template,request
 from audiocraft.models import musicgen
 from audiocraft.data.audio import audio_write
 import os
-import google.generativeai as palm
 
 model = musicgen.MusicGen.get_pretrained('facebook/musicgen-melody', device='cpu')
 
