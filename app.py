@@ -5,11 +5,11 @@
 # %%
 from flask import Flask,render_template,request
 
-# from audiocraft.models import musicgen
+from audiocraft.models import musicgen
 # from audiocraft.data.audio import audio_write
 import os
 
-# model = musicgen.MusicGen.get_pretrained('facebook/musicgen-melody', device='cpu')
+model = musicgen.MusicGen.get_pretrained("small", device='cpu')
 
 app = Flask(__name__)
 
@@ -18,17 +18,13 @@ def index():
     return(render_template("index.html"))
 
 @app.route("/result_melody",methods=["GET","POST"])
-def result_palm():
+def result_melody():
     prompt_text = request.form.get("q") 
-    # model.set_generation_params(duration=1)
-    # res = model.generate( [ prompt_text ], progress=True)
-    # for idx, one_wav in enumerate(res):
-    #     audio_write('static/audio_file', one_wav.cpu(), model.sample_rate)
-    
     from gradio_client import Client
 
     client = Client("https://facebook-musicgen.hf.space/")
     result = client.predict(prompt_text, None, fn_index=0)
+    print(result)
     return(render_template("result_melody.html",r=result[0]))
 
 @app.route("/end",methods=["GET","POST"])
